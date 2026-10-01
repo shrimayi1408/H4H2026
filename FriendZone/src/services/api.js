@@ -141,7 +141,7 @@ import {
     signOut
 } from "firebase/auth";
 
-const API_BASE_URL = 'http://127.0.0.1:5000/api';
+const API_BASE_URL = 'https://h4h2026-production-2c92.up.railway.app/api';
 
 export const api = {
     loginWithGoogle: async () => {
@@ -179,7 +179,7 @@ export const api = {
                 credential,
             };
         } catch (error) {
-            console.error("Login fetch error:", error);
+            console.error("Login error:", error);
             return { success: false, error: error.message };
         }
     },
@@ -226,7 +226,7 @@ export const api = {
         });
         return response.json();
     },
-
+    /*
     connectGoogleCalendar: async () => {
         try {
             const provider = new GoogleAuthProvider();
@@ -267,10 +267,12 @@ export const api = {
             return { success: false, error: error.message };
         }
     },
-
+    */
     // Get Google Calendar OAuth URL
     getCalendarAuthUrl: async (userId) => {
         const response = await fetch(`${API_BASE_URL}/calendar/auth?userId=${userId}`);
         return response.json();
     },
 };
+
+export default api;
