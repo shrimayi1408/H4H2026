@@ -41,6 +41,15 @@ app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
 });
 
+// --- SERVE FRONTEND STATIC FILES ---
+// Serves static assets from the 'dist' folder (make sure your frontend build folder is named 'dist')
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Wildcard catch-all route: sends index.html for any frontend client routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 // Start server
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`BACKEND IS LIVE`);

@@ -50,7 +50,8 @@ export async function oauthCallback(req, res) {
     });
 
     // Redirect back to frontend with success message
-    res.redirect('http://localhost:5173/profile?calendar=connected');
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    res.redirect(`${frontendUrl}/profile?calendar=connected`);
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

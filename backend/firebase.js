@@ -2,8 +2,11 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import admin from "firebase-admin";
 // TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// https://firebase.google.com/docs/web/setup#available-libraries'
+
+admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,5 +22,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Export Firestore and Auth so other files can use them
-export const db = getFirestore(app);
+export const db = admin.firestore();
 export const auth = getAuth(app);
